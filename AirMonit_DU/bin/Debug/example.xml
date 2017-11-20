@@ -1,0 +1,7 @@
+<sensor>
+  <sensor_id>7</sensor_id>
+  <sensor_name>NO2</sensor_name>
+  <sensor_value>727</sensor_value>
+  <sensor_date>20/11/2017 11:55:07</sensor_date>
+  <sensor_city>Porto</sensor_city>
+</sensor>

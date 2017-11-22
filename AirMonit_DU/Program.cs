@@ -59,9 +59,6 @@ namespace AirMonit_DU
             XmlElement city = doc.CreateElement("sensor_city");
             city.InnerText = str_parts[4];
 
-            //XmlElement cause = doc.CreateElement("sensor_cause");
-            //cause.InnerText = "";
-
             root.AppendChild(id);
             root.AppendChild(name);
             root.AppendChild(value);

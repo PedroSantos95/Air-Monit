@@ -25,12 +25,6 @@ namespace AirMonit_DU
             }
             else
             {
-                //lblInfoConn.Text = "Connected to broker " + txtBroker.Text;
-                //byte[] arrQoS = new byte[2];
-                //arrQoS[0] = MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE;
-                //arrQoS[1] = MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE;
-                //mClient.Subscribe(mStrTopicsInfo, arrQoS);
-                // mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
                 AirSensorNodeDll.AirSensorNodeDll dll = new AirSensorNodeDll.AirSensorNodeDll();
                 dll.Initialize(GenerataSensorData, 2500);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace AirMonit_DLog
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             MqttClient mClient = new MqttClient("127.0.0.1");
@@ -20,6 +22,9 @@ namespace AirMonit_DLog
                 Console.WriteLine("Error connecting to message broker...");
                 return;
             }
+
+            //Connect to database
+            
 
             mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
             //Subscribe to topics
@@ -40,5 +45,6 @@ namespace AirMonit_DLog
             string data = Encoding.UTF8.GetString(e.Message);
             Console.WriteLine(data);
         }
+
     }
 }

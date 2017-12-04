@@ -1,0 +1,8 @@
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\AirMonit_DLog.exe.config
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\AirMonit_DLog.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\AirMonit_DLog.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\M2Mqtt.Net.dll
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\obj\Debug\AirMonit_DLog.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\obj\Debug\AirMonit_DLog.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\obj\Debug\AirMonit_DLog.csprojResolveAssemblyReference.cache

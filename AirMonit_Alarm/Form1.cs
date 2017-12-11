@@ -303,6 +303,72 @@ namespace AirMonit_Alarm
                 }
             }
 
+            if (!checkBox2.Checked)
+            {
+                XmlNodeList lstNO2 = doc.SelectNodes("/alarms/NO2");
+
+                foreach (XmlNode n in lstNO2)
+                {
+                    XmlNode minNO2 = n.SelectSingleNode("Min");
+                    minNO2.InnerText = "";
+
+                    XmlNode maxNO2 = n.SelectSingleNode("Max");
+                    maxNO2.InnerText = "";
+
+                    XmlNode eqNO2 = n.SelectSingleNode("Equal");
+                    eqNO2.InnerText = "";
+
+                    XmlNode minBetNO2 = n.SelectSingleNode("Between").SelectSingleNode("min");
+                    minBetNO2.InnerText = "";
+                    XmlNode maxBetNO2 = n.SelectSingleNode("Between").SelectSingleNode("max");
+                    maxBetNO2.InnerText = "";
+                }
+            }
+
+            if (!checkBox3.Checked)
+            {
+                XmlNodeList lstCO = doc.SelectNodes("/alarms/CO");
+
+                foreach (XmlNode n in lstCO)
+                {
+                    XmlNode minCO = n.SelectSingleNode("Min");
+                    minCO.InnerText = "";
+
+                    XmlNode maxCO = n.SelectSingleNode("Max");
+                    maxCO.InnerText = "";
+
+                    XmlNode eqCO = n.SelectSingleNode("Equal");
+                    eqCO.InnerText = "";
+
+                    XmlNode minBetCO = n.SelectSingleNode("Between").SelectSingleNode("min");
+                    minBetCO.InnerText = "";
+                    XmlNode maxBetCO = n.SelectSingleNode("Between").SelectSingleNode("max");
+                    maxBetCO.InnerText = "";
+                }
+            }
+
+            if (!checkBox4.Checked)
+            {
+                XmlNodeList lstO3 = doc.SelectNodes("/alarms/O3");
+
+                foreach (XmlNode n in lstO3)
+                {
+                    XmlNode minO3 = n.SelectSingleNode("Min");
+                    minO3.InnerText = "";
+
+                    XmlNode maxO3 = n.SelectSingleNode("Max");
+                    maxO3.InnerText = "";
+
+                    XmlNode eqO3 = n.SelectSingleNode("Equal");
+                    eqO3.InnerText = "";
+
+                    XmlNode minBetO3 = n.SelectSingleNode("Between").SelectSingleNode("min");
+                    minBetO3.InnerText = "";
+                    XmlNode maxBetO3 = n.SelectSingleNode("Between").SelectSingleNode("max");
+                    maxBetO3.InnerText = "";
+                }
+            }
+
             doc.Save("trigger-rules.xml");
         }
 
@@ -378,10 +444,7 @@ namespace AirMonit_Alarm
                     return;
                 }
 
-                //Specify events we are interest on
-                //New Msg Arrived
                 m_cClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
-
 
             }
             catch (Exception ex)
@@ -403,7 +466,65 @@ namespace AirMonit_Alarm
                 sensor = (Sensor)serializer.Deserialize(stringReader);
 
                 XMLReader(sensor);
-                Console.WriteLine("Valor: " + sensor.Value + " Nome: " + sensor.SensorName + " Cidade: " + sensor.SensorCity);
+                XmlDocument rules = new XmlDocument();
+                rules.Load("trigger-rules.xml");
+                
+                XmlDocument doc = new XmlDocument();
+                XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
+                doc.AppendChild(dec);
+
+                XmlNodeList nodeListNO2 = rules.SelectNodes("/alarms/NO2");
+                
+                foreach(XmlNode node in nodeListNO2)
+                {
+                    foreach(XmlNode nodeC in node)
+                    {
+                        if (nodeC.InnerText != "")
+                        {
+                            if (nodeC.Name == "Min")
+                            {
+                                if (sensor.Value < Int32.Parse(nodeC.InnerText))
+                                {
+                                    XmlNode root = doc.CreateElement("alarm");
+
+                                    XmlElement id = doc.CreateElement("sensor_id");
+                                    id.InnerText = sensor.SensorID.ToString();
+
+                                    XmlElement name = doc.CreateElement("sensor_name");
+                                    name.InnerText = sensor.SensorName.ToString();
+
+                                    XmlElement date = doc.CreateElement("sensor_date");
+                                    date.InnerText = sensor.DateTime.ToString();
+
+                                    XmlElement city = doc.CreateElement("sensor_city");
+                                    city.InnerText = sensor.SensorCity.ToString();
+
+                                    XmlElement value = doc.CreateElement("sensor_value");
+                                    value.InnerText = sensor.Value.ToString();
+
+                                    XmlElement trigger_value = doc.CreateElement("trigger_value");
+                                    trigger_value.InnerText = nodeC.InnerText;
+
+                                    XmlElement trigger_rule = doc.CreateElement("trigger_rule");
+                                    trigger_rule.InnerText = "Min";
+
+                                    root.AppendChild(id);
+                                    root.AppendChild(name);
+                                    root.AppendChild(date);
+                                    root.AppendChild(city);
+                                    root.AppendChild(value);
+                                    root.AppendChild(trigger_rule);
+                                    root.AppendChild(trigger_value);
+                                    doc.AppendChild(root);
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+
+                string xmlOutput = doc.OuterXml;
+                Console.WriteLine(xmlOutput); //Mudar para enviar para data-logger
             }
             catch (Exception ex)
             {

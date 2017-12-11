@@ -7,3 +7,12 @@ C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DU\bin\
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DU\bin\Debug\M2Mqtt.Net.pdb
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DU\obj\Debug\AirMonit_DU.exe
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DU\obj\Debug\AirMonit_DU.pdb
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\AirMonit_DU.exe.config
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\AirMonit_DU.exe
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\AirMonit_DU.pdb
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\AirSensorNodeDll.dll
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\M2Mqtt.Net.dll
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\bin\Debug\M2Mqtt.Net.pdb
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\obj\Debug\AirMonit_DU.csprojResolveAssemblyReference.cache
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\obj\Debug\AirMonit_DU.exe
+d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_DU\obj\Debug\AirMonit_DU.pdb

@@ -11,7 +11,7 @@ namespace AirMonit_DU
     static class Program
     {
         static MqttClient mClient = null;
-        static string[] topics = { "no2", "co", "o3" };
+        static string[] topics = { "no2", "co", "o3", "alarm" };
 
         static void Main(string[] args)
         {
@@ -19,7 +19,6 @@ namespace AirMonit_DU
             mClient.Connect(Guid.NewGuid().ToString());
             if (!mClient.IsConnected)
             {
-                //MessageBox.Show("Error connecting to message broker...");
                 Console.WriteLine("Error connecting to message broker...");
                 return;
             }

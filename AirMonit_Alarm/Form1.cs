@@ -52,11 +52,12 @@ namespace AirMonit_Alarm
                 subscribeTopics();
                 checkBox1.Text = "Off";
             }
-            else{
-                if(checkBox1.Text != "On")
+            else
+            {
+                if (checkBox1.Text != "On")
                 {
                     checkBox1.Text = "On";
-                }    
+                }
             }
         }
 
@@ -240,8 +241,8 @@ namespace AirMonit_Alarm
             if (checkBox2.Checked)
             {
                 XmlNodeList lstNO2 = doc.SelectNodes("/alarms/NO2");
-                
-                foreach(XmlNode n in lstNO2)
+
+                foreach (XmlNode n in lstNO2)
                 {
                     XmlNode minNO2 = n.SelectSingleNode("Min");
                     minNO2.InnerText = textBox1.Text;
@@ -374,13 +375,13 @@ namespace AirMonit_Alarm
 
         private static void XMLReader(Sensor sensor)
         {
-             string alarmMessage = "";
+            string alarmMessage = "";
 
             XmlTextReader xmlReader = new XmlTextReader("trigger-rules.xml");
             while (xmlReader.Read())
             {
                 alarmMessage += sensor.Value;
-                
+
             }
             xmlReader.Close();
 
@@ -468,68 +469,265 @@ namespace AirMonit_Alarm
                 XMLReader(sensor);
                 XmlDocument rules = new XmlDocument();
                 rules.Load("trigger-rules.xml");
-                
+
                 XmlDocument doc = new XmlDocument();
                 XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
                 doc.AppendChild(dec);
+                XmlNode root = doc.CreateElement("alarms");
+                doc.AppendChild(root);
 
                 XmlNodeList nodeListNO2 = rules.SelectNodes("/alarms/NO2");
-                
-                foreach(XmlNode node in nodeListNO2)
-                {
-                    foreach(XmlNode nodeC in node)
-                    {
-                        if (nodeC.InnerText != "")
-                        {
-                            if (nodeC.Name == "Min")
-                            {
-                                if (sensor.Value < Int32.Parse(nodeC.InnerText))
-                                {
-                                    XmlNode root = doc.CreateElement("alarm");
+                XmlNodeList nodeListCO = rules.SelectNodes("/alarms/CO");
+                XmlNodeList nodeListO3 = rules.SelectNodes("/alarms/O3");
 
-                                    XmlElement id = doc.CreateElement("sensor_id");
-                                    id.InnerText = sensor.SensorID.ToString();
+                checkMinRules(nodeListNO2, doc, rules, root);
+                checkMinRules(nodeListCO, doc, rules, root);
+                checkMinRules(nodeListO3, doc, rules, root);
 
-                                    XmlElement name = doc.CreateElement("sensor_name");
-                                    name.InnerText = sensor.SensorName.ToString();
+                checkMaxRules(nodeListNO2, doc, rules, root);
+                checkMaxRules(nodeListCO, doc, rules, root);
+                checkMaxRules(nodeListO3, doc, rules, root);
 
-                                    XmlElement date = doc.CreateElement("sensor_date");
-                                    date.InnerText = sensor.DateTime.ToString();
+                checkEqualRules(nodeListNO2, doc, rules, root);
+                checkEqualRules(nodeListCO, doc, rules, root);
+                checkEqualRules(nodeListO3, doc, rules, root);
 
-                                    XmlElement city = doc.CreateElement("sensor_city");
-                                    city.InnerText = sensor.SensorCity.ToString();
+                checkBetweenRules(nodeListNO2, doc, rules, root);
+                checkBetweenRules(nodeListCO, doc, rules, root);
+                checkBetweenRules(nodeListO3, doc, rules, root);
 
-                                    XmlElement value = doc.CreateElement("sensor_value");
-                                    value.InnerText = sensor.Value.ToString();
-
-                                    XmlElement trigger_value = doc.CreateElement("trigger_value");
-                                    trigger_value.InnerText = nodeC.InnerText;
-
-                                    XmlElement trigger_rule = doc.CreateElement("trigger_rule");
-                                    trigger_rule.InnerText = "Min";
-
-                                    root.AppendChild(id);
-                                    root.AppendChild(name);
-                                    root.AppendChild(date);
-                                    root.AppendChild(city);
-                                    root.AppendChild(value);
-                                    root.AppendChild(trigger_rule);
-                                    root.AppendChild(trigger_value);
-                                    doc.AppendChild(root);
-                                }
-                            }
-                        }
-                    }
-                    
-                }
-
-                string xmlOutput = doc.OuterXml;
-                Console.WriteLine(xmlOutput); //Mudar para enviar para data-logger
+                String data = doc.OuterXml;
+                m_cClient.Publish(topics[3], Encoding.UTF8.GetBytes(data));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
+        private static void checkMinRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
+        {
+            foreach (XmlNode node in list)
+            {
+                foreach (XmlNode nodeC in node)
+                {
+                    if (nodeC.InnerText != "")
+                    {
+                        if (nodeC.Name == "Min")
+                        {
+                            if (sensor.Value < Int32.Parse(nodeC.InnerText))
+                            {
+
+                                XmlElement alarm = doc.CreateElement("alarm");
+
+                                XmlElement id = doc.CreateElement("sensor_id");
+                                id.InnerText = sensor.SensorID.ToString();
+
+                                XmlElement name = doc.CreateElement("sensor_name");
+                                name.InnerText = sensor.SensorName.ToString();
+
+                                XmlElement date = doc.CreateElement("sensor_date");
+                                date.InnerText = sensor.DateTime.ToString();
+
+                                XmlElement city = doc.CreateElement("sensor_city");
+                                city.InnerText = sensor.SensorCity.ToString();
+
+                                XmlElement value = doc.CreateElement("sensor_value");
+                                value.InnerText = sensor.Value.ToString();
+
+                                XmlElement trigger_value = doc.CreateElement("trigger_value");
+                                trigger_value.InnerText = nodeC.InnerText;
+
+                                XmlElement trigger_rule = doc.CreateElement("trigger_rule");
+                                trigger_rule.InnerText = "Min";
+
+                                alarm.AppendChild(id);
+                                alarm.AppendChild(name);
+                                alarm.AppendChild(date);
+                                alarm.AppendChild(city);
+                                alarm.AppendChild(value);
+                                alarm.AppendChild(trigger_rule);
+                                alarm.AppendChild(trigger_value);
+                                root.AppendChild(alarm);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private static void checkMaxRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
+        {
+            foreach (XmlNode node in list)
+            {
+                foreach (XmlNode nodeC in node)
+                {
+                    if (nodeC.InnerText != "")
+                    {
+                        if (nodeC.Name == "Max")
+                        {
+                            if (sensor.Value > Int32.Parse(nodeC.InnerText))
+                            {
+
+                                XmlElement alarm = doc.CreateElement("alarm");
+
+                                XmlElement id = doc.CreateElement("sensor_id");
+                                id.InnerText = sensor.SensorID.ToString();
+
+                                XmlElement name = doc.CreateElement("sensor_name");
+                                name.InnerText = sensor.SensorName.ToString();
+
+                                XmlElement date = doc.CreateElement("sensor_date");
+                                date.InnerText = sensor.DateTime.ToString();
+
+                                XmlElement city = doc.CreateElement("sensor_city");
+                                city.InnerText = sensor.SensorCity.ToString();
+
+                                XmlElement value = doc.CreateElement("sensor_value");
+                                value.InnerText = sensor.Value.ToString();
+
+                                XmlElement trigger_value = doc.CreateElement("trigger_value");
+                                trigger_value.InnerText = nodeC.InnerText;
+
+                                XmlElement trigger_rule = doc.CreateElement("trigger_rule");
+                                trigger_rule.InnerText = "Max";
+
+                                alarm.AppendChild(id);
+                                alarm.AppendChild(name);
+                                alarm.AppendChild(date);
+                                alarm.AppendChild(city);
+                                alarm.AppendChild(value);
+                                alarm.AppendChild(trigger_rule);
+                                alarm.AppendChild(trigger_value);
+                                root.AppendChild(alarm);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private static void checkEqualRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
+        {
+            foreach (XmlNode node in list)
+            {
+                foreach (XmlNode nodeC in node)
+                {
+                    if (nodeC.InnerText != "")
+                    {
+                        if (nodeC.Name == "Equal")
+                        {
+                            if (sensor.Value == Int32.Parse(nodeC.InnerText))
+                            {
+
+                                XmlElement alarm = doc.CreateElement("alarm");
+
+                                XmlElement id = doc.CreateElement("sensor_id");
+                                id.InnerText = sensor.SensorID.ToString();
+
+                                XmlElement name = doc.CreateElement("sensor_name");
+                                name.InnerText = sensor.SensorName.ToString();
+
+                                XmlElement date = doc.CreateElement("sensor_date");
+                                date.InnerText = sensor.DateTime.ToString();
+
+                                XmlElement city = doc.CreateElement("sensor_city");
+                                city.InnerText = sensor.SensorCity.ToString();
+
+                                XmlElement value = doc.CreateElement("sensor_value");
+                                value.InnerText = sensor.Value.ToString();
+
+                                XmlElement trigger_value = doc.CreateElement("trigger_value");
+                                trigger_value.InnerText = nodeC.InnerText;
+
+                                XmlElement trigger_rule = doc.CreateElement("trigger_rule");
+                                trigger_rule.InnerText = "Equals";
+
+                                alarm.AppendChild(id);
+                                alarm.AppendChild(name);
+                                alarm.AppendChild(date);
+                                alarm.AppendChild(city);
+                                alarm.AppendChild(value);
+                                alarm.AppendChild(trigger_rule);
+                                alarm.AppendChild(trigger_value);
+                                root.AppendChild(alarm);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private static void checkBetweenRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
+        {
+            int min = 0;
+            int max = 0;
+
+            foreach (XmlNode node in list)
+            {
+                foreach (XmlNode nodeC in node)
+                {
+                    if (nodeC.InnerText != "")
+                    {
+                        if (nodeC.Name == "Between")
+                        {
+                            XmlNodeList minLst = node.SelectSingleNode("Between").SelectNodes("min");
+                            XmlNodeList maxLst = node.SelectSingleNode("Between").SelectNodes("max");
+
+                            foreach (XmlNode x in minLst)
+                            {
+                                min = Int32.Parse(x.InnerText);
+                            }
+                            foreach (XmlNode y in maxLst)
+                            {
+                                max = Int32.Parse(y.InnerText);
+                            }
+
+                            if (sensor.Value < max && sensor.Value > min)
+                            {
+                                XmlElement alarm = doc.CreateElement("alarm");
+
+                                XmlElement id = doc.CreateElement("sensor_id");
+                                id.InnerText = sensor.SensorID.ToString();
+
+                                XmlElement name = doc.CreateElement("sensor_name");
+                                name.InnerText = sensor.SensorName.ToString();
+
+                                XmlElement date = doc.CreateElement("sensor_date");
+                                date.InnerText = sensor.DateTime.ToString();
+
+                                XmlElement city = doc.CreateElement("sensor_city");
+                                city.InnerText = sensor.SensorCity.ToString();
+
+                                XmlElement value = doc.CreateElement("sensor_value");
+                                value.InnerText = sensor.Value.ToString();
+
+                                XmlElement trigger_value = doc.CreateElement("trigger_value");
+                                trigger_value.InnerText = nodeC.InnerText;
+
+                                XmlElement trigger_rule = doc.CreateElement("trigger_rule");
+                                trigger_rule.InnerText = "Between";
+
+                                alarm.AppendChild(id);
+                                alarm.AppendChild(name);
+                                alarm.AppendChild(date);
+                                alarm.AppendChild(city);
+                                alarm.AppendChild(value);
+                                alarm.AppendChild(trigger_rule);
+                                alarm.AppendChild(trigger_value);
+                                root.AppendChild(alarm);
+                            }
+
+                        }
+                    }
+
+                }
+            }
+        }
+
     }
+
 }

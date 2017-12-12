@@ -9,3 +9,14 @@ D:\Documents\Visual Studio 2017\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMo
 D:\Documents\Visual Studio 2017\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.pdb
 d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_Alarm\bin\Debug\M2Mqtt.Net.dll
 d:\documents\visual studio 2017\Projects\AirMonit\AirMonit_Alarm\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\bin\Debug\AirMonit_Alarm.exe.config
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\bin\Debug\AirMonit_Alarm.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\bin\Debug\AirMonit_Alarm.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\bin\Debug\M2Mqtt.Net.dll
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.csprojResolveAssemblyReference.cache
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.Form1.resources
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.Properties.Resources.resources
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Alarm\obj\Debug\AirMonit_Alarm.csproj.GenerateResource.Cache

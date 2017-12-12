@@ -22,7 +22,6 @@ C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bi
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\AirMonit_SERVICE.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\RestSharp.dll
-C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\System.Web.Http.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\System.Web.Http.WebHost.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_DLog\bin\Debug\AirMonit_SERVICE.pdb

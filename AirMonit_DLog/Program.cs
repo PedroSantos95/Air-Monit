@@ -47,15 +47,18 @@ namespace AirMonit_DLog
                 //Console.WriteLine(data);
                 //ServiceReference.Service1Client service = new ServiceReference.Service1Client();
                 AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
-                data = Regex.Replace(data, "<.*?>", "\n");
-                String[] words = data.Split('\n');
+                data = Regex.Replace(data, "<.*?>", "#");
+                String[] words = data.Split('#');
                 Sensor sensor = new Sensor();
-                //sensor.Id = words[0];
-                //sensor.Name = words[1];
-                //sensor.Value = words[2];
-                //sensor.Date = words[3];
-                sensor.City = words[4];
-                PostSensor(sensor);
+                sensor.Id = Int32.Parse(words[2]);
+                sensor.Name = words[4];
+                sensor.Value = Int32.Parse(words[6]);
+                sensor.Date = words[8];
+                sensor.City = words[10];
+            //service.PostSensor(sensor);
+            //PostSensor(sensor);
+            service.PostSensor(sensor);
+                //Console.WriteLine(sensor.City);
             //}
             //catch (Exception ex)
             //{

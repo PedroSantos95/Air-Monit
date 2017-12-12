@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirMonit_DLog.Models
 {
+    [Serializable]
     public class Sensor
     {
         public int Id { get; set; }

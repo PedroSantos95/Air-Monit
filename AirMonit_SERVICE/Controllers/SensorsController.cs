@@ -63,7 +63,7 @@ namespace AirMonit_SERVICE.Controllers
             return NotFound();
         }
 
-        public IHttpActionResult PostSensor(Sensor s)
+        public void PostSensor(Sensor s)
         {
             SqlConnection conn = null;
             conn = new SqlConnection(str_conn);
@@ -73,12 +73,12 @@ namespace AirMonit_SERVICE.Controllers
             //cmd.Parameters.AddWithValue("name", p.Name); <-- mais segurança
             int nRows = cmd.ExecuteNonQuery();
             conn.Close();
-            if (nRows > 0)
+            /*if (nRows > 0)
             {
                 return Ok(s);
             }
             else
-                return NotFound();
+                return NotFound();*/
         }
 
         [Route("api/sensors/{id:int}")]

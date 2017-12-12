@@ -39,3 +39,4 @@ C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_SERVICE
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_SERVICE\obj\Debug\AirMonit_SERVICE.csprojResolveAssemblyReference.cache
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_SERVICE\obj\Debug\AirMonit_SERVICE.dll
 C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_SERVICE\obj\Debug\AirMonit_SERVICE.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_SERVICE\bin\RestSharp.dll

@@ -1,30 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <alarms>
   <NO2>
-    <Min>1</Min>
-    <Max>1</Max>
-    <Equal>1</Equal>
+    <Min>
+    </Min>
+    <Max>
+    </Max>
+    <Equal>
+    </Equal>
     <Between>
-      <max>2</max>
+      <max>1232121311</max>
       <min>1</min>
     </Between>
   </NO2>
   <CO>
-    <Min>6</Min>
-    <Max>7</Max>
-    <Equal>8</Equal>
+    <Min>
+    </Min>
+    <Max>
+    </Max>
+    <Equal>
+    </Equal>
     <Between>
-      <max>10</max>
-      <min>9</min>
+      <max>123131</max>
+      <min>1</min>
     </Between>
   </CO>
   <O3>
-    <Min>11</Min>
-    <Max>12</Max>
-    <Equal>13</Equal>
+    <Min>
+    </Min>
+    <Max>
+    </Max>
+    <Equal>
+    </Equal>
     <Between>
-      <max>15</max>
-      <min>14</min>
+      <max>
+      </max>
+      <min>
+      </min>
     </Between>
   </O3>
 </alarms>

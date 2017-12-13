@@ -41,8 +41,8 @@ namespace AirMonit_DLog
 
         private static void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 string data = Encoding.UTF8.GetString(e.Message);
                 //Console.WriteLine(data);
                 //ServiceReference.Service1Client service = new ServiceReference.Service1Client();
@@ -55,18 +55,15 @@ namespace AirMonit_DLog
                 sensor.Value = Int32.Parse(words[6]);
                 sensor.Date = words[8];
                 sensor.City = words[10];
-            //service.PostSensor(sensor);
-            //PostSensor(sensor);
-            service.PostSensor(sensor);
-                //Console.WriteLine(sensor.City);
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+                service.PostSensor(sensor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        protected static void PostSensor(Sensor s)
+        /*protected static void PostSensor(Sensor s)
         {
             var client = new RestClient("http://localhost:56269/");
             var request = new RestRequest("api/sensors/", Method.POST);
@@ -79,7 +76,7 @@ namespace AirMonit_DLog
 
             var content = resp.Content;
 
-        }
+        }*/
 
     }
 }

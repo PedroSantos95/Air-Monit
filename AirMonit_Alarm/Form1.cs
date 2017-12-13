@@ -390,6 +390,8 @@ namespace AirMonit_Alarm
 
         private void subscribeTopics()
         {
+            topics.Add("alarm");
+
             if (checkBox2.Checked)
             {
                 topics.Add("no2");
@@ -497,12 +499,15 @@ namespace AirMonit_Alarm
                 checkBetweenRules(nodeListO3, doc, rules, root);
 
                 String data = doc.OuterXml;
-                m_cClient.Publish(topics[3], Encoding.UTF8.GetBytes(data));
+                m_cClient.Publish(topics[0], Encoding.UTF8.GetBytes(data));
+                Console.WriteLine(data);
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+            
         }
 
         private static void checkMinRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
@@ -729,5 +734,4 @@ namespace AirMonit_Alarm
         }
 
     }
-
 }

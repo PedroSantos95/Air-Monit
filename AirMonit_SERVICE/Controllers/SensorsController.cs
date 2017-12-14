@@ -81,6 +81,24 @@ namespace AirMonit_SERVICE.Controllers
                 return NotFound();*/
         }
 
+        public void PostAlarm(Sensor s)
+        {
+            SqlConnection conn = null;
+            conn = new SqlConnection(str_conn);
+            conn.Open();
+            string str_cmd = "Insert into Alarms values ('" + s.Id + "', '" + s.Name + "', '" + s.Date + "', '" + s.City + "', '" + s.Value + "', '" + s.Trigger_rule + "', '" + s.Trigger_value + "')";
+            SqlCommand cmd = new SqlCommand(str_cmd, conn);
+            //cmd.Parameters.AddWithValue("name", p.Name); <-- mais segurança
+            int nRows = cmd.ExecuteNonQuery();
+            conn.Close();
+            /*if (nRows > 0)
+            {
+                return Ok(s);
+            }
+            else
+                return NotFound();*/
+        }
+
         [Route("api/sensors/{id:int}")]
         public IHttpActionResult PutSensor(int id, Sensor s)
         {

@@ -13,15 +13,19 @@ namespace AirMonit_Alarm
     public class Sensor
     {
         [XmlElement("sensor_id")]
-        public int SensorID { get; set; }
+        public int Id { get; set; }
         [XmlElement("sensor_name")]
-        public string SensorName { get; set; }
-        [XmlElement("sensor_value")]
-        public double Value { get; set; }
+        public string Name { get; set; }
         [XmlElement("sensor_date")]
-        public string DateTime { get; set; }
+        public string Date { get; set; }
         [XmlElement("sensor_city")]
-        public string SensorCity { get; set; }
+        public string City { get; set; }
+        [XmlElement("sensor_value")]
+        public int Value { get; set; }
+        [XmlElement("sensor_trigger_rule")]
+        public string Trigger_rule { get; set; }
+        [XmlElement("sensor_trigger_value")]
+        public int Trigger_value { get; set; }
 
         public Sensor()
         {

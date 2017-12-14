@@ -501,13 +501,13 @@ namespace AirMonit_Alarm
                 String data = doc.OuterXml;
                 m_cClient.Publish(topics[0], Encoding.UTF8.GetBytes(data));
                 Console.WriteLine(data);
-                
+
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
+
         }
 
         private static void checkMinRules(XmlNodeList list, XmlDocument doc, XmlDocument rules, XmlNode root)
@@ -526,16 +526,16 @@ namespace AirMonit_Alarm
                                 XmlElement alarm = doc.CreateElement("alarm");
 
                                 XmlElement id = doc.CreateElement("sensor_id");
-                                id.InnerText = sensor.SensorID.ToString();
+                                id.InnerText = sensor.Id.ToString();
 
                                 XmlElement name = doc.CreateElement("sensor_name");
-                                name.InnerText = sensor.SensorName.ToString();
+                                name.InnerText = sensor.Name.ToString();
 
                                 XmlElement date = doc.CreateElement("sensor_date");
-                                date.InnerText = sensor.DateTime.ToString();
+                                date.InnerText = sensor.Date.ToString();
 
                                 XmlElement city = doc.CreateElement("sensor_city");
-                                city.InnerText = sensor.SensorCity.ToString();
+                                city.InnerText = sensor.City.ToString();
 
                                 XmlElement value = doc.CreateElement("sensor_value");
                                 value.InnerText = sensor.Value.ToString();
@@ -578,16 +578,16 @@ namespace AirMonit_Alarm
                                 XmlElement alarm = doc.CreateElement("alarm");
 
                                 XmlElement id = doc.CreateElement("sensor_id");
-                                id.InnerText = sensor.SensorID.ToString();
+                                id.InnerText = sensor.Id.ToString();
 
                                 XmlElement name = doc.CreateElement("sensor_name");
-                                name.InnerText = sensor.SensorName.ToString();
+                                name.InnerText = sensor.Name.ToString();
 
                                 XmlElement date = doc.CreateElement("sensor_date");
-                                date.InnerText = sensor.DateTime.ToString();
+                                date.InnerText = sensor.Date.ToString();
 
                                 XmlElement city = doc.CreateElement("sensor_city");
-                                city.InnerText = sensor.SensorCity.ToString();
+                                city.InnerText = sensor.City.ToString();
 
                                 XmlElement value = doc.CreateElement("sensor_value");
                                 value.InnerText = sensor.Value.ToString();
@@ -630,16 +630,16 @@ namespace AirMonit_Alarm
                                 XmlElement alarm = doc.CreateElement("alarm");
 
                                 XmlElement id = doc.CreateElement("sensor_id");
-                                id.InnerText = sensor.SensorID.ToString();
+                                id.InnerText = sensor.Id.ToString();
 
                                 XmlElement name = doc.CreateElement("sensor_name");
-                                name.InnerText = sensor.SensorName.ToString();
+                                name.InnerText = sensor.Name.ToString();
 
                                 XmlElement date = doc.CreateElement("sensor_date");
-                                date.InnerText = sensor.DateTime.ToString();
+                                date.InnerText = sensor.Date.ToString();
 
                                 XmlElement city = doc.CreateElement("sensor_city");
-                                city.InnerText = sensor.SensorCity.ToString();
+                                city.InnerText = sensor.City.ToString();
 
                                 XmlElement value = doc.CreateElement("sensor_value");
                                 value.InnerText = sensor.Value.ToString();
@@ -696,16 +696,16 @@ namespace AirMonit_Alarm
                                 XmlElement alarm = doc.CreateElement("alarm");
 
                                 XmlElement id = doc.CreateElement("sensor_id");
-                                id.InnerText = sensor.SensorID.ToString();
+                                id.InnerText = sensor.Id.ToString();
 
                                 XmlElement name = doc.CreateElement("sensor_name");
-                                name.InnerText = sensor.SensorName.ToString();
+                                name.InnerText = sensor.Name.ToString();
 
                                 XmlElement date = doc.CreateElement("sensor_date");
-                                date.InnerText = sensor.DateTime.ToString();
+                                date.InnerText = sensor.Date.ToString();
 
                                 XmlElement city = doc.CreateElement("sensor_city");
-                                city.InnerText = sensor.SensorCity.ToString();
+                                city.InnerText = sensor.City.ToString();
 
                                 XmlElement value = doc.CreateElement("sensor_value");
                                 value.InnerText = sensor.Value.ToString();

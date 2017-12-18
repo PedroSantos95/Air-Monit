@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.4
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirMonit_DU", "AirMonit_DU\AirMonit_DU.csproj", "{7773337B-9347-4DB1-8718-CCE2B6DE1C24}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirMonit_SERVICE", "AirMonit_SERVICE\AirMonit_SERVICE.csproj", "{6E2F3924-FAEF-4112-B28B-3BE193B796B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirMonit_Alarm", "AirMonit_Alarm\AirMonit_Alarm.csproj", "{F07E763A-8070-46E4-9E35-6346F9AA9CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirMonit_Admin", "AirMonit_Admin\AirMonit_Admin.csproj", "{F5D7B326-2FC4-4E09-8E94-F286CFF8EBEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F07E763A-8070-46E4-9E35-6346F9AA9CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F07E763A-8070-46E4-9E35-6346F9AA9CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F07E763A-8070-46E4-9E35-6346F9AA9CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D7B326-2FC4-4E09-8E94-F286CFF8EBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D7B326-2FC4-4E09-8E94-F286CFF8EBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D7B326-2FC4-4E09-8E94-F286CFF8EBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D7B326-2FC4-4E09-8E94-F286CFF8EBEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

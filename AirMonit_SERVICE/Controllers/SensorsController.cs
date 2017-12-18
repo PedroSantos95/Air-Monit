@@ -63,6 +63,34 @@ namespace AirMonit_SERVICE.Controllers
             return NotFound();
         }
 
+        [Route("api/sensors/{name:string}")]
+        public Sensor GetSensorByName(string name, string city)
+        {
+            Sensor s = new Sensor();
+            SqlConnection conn = null;
+            conn = new SqlConnection(str_conn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name=" + name + " and City=" + city + "", conn);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                s.Id = (int)reader["id"];
+                s.Name = (string)reader["name"];
+                s.Value = (int)reader["value"];
+                s.Date = (string)reader["date"];
+                s.City = (string)reader["city"];
+                reader.Close();
+                conn.Close();
+                //return Ok(s);
+                return s;
+            }
+            reader.Close();
+            conn.Close();
+            //return NotFound();
+            return null;
+        }
+
         public void PostSensor(Sensor s)
         {
             SqlConnection conn = null;

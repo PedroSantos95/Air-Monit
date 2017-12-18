@@ -1,0 +1,9 @@
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\bin\Debug\AirMonit_Admin.exe.config
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\bin\Debug\AirMonit_Admin.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\bin\Debug\AirMonit_Admin.pdb
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.csprojResolveAssemblyReference.cache
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.Form1.resources
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.Properties.Resources.resources
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.csproj.GenerateResource.Cache
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.exe
+C:\Users\Goncalo\Documents\Visual Studio 2015\Projects\AirMonit\AirMonit_Admin\obj\Debug\AirMonit_Admin.pdb

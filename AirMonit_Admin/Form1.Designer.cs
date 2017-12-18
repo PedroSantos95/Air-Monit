@@ -45,7 +45,7 @@
             this.cbCity = new System.Windows.Forms.ComboBox();
             this.lbSensorsInfo = new System.Windows.Forms.Label();
             this.lbAlarmsInfo = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtAlarmsInfo = new System.Windows.Forms.RichTextBox();
             this.chartSensors = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblSensorTest = new System.Windows.Forms.Label();
@@ -195,13 +195,13 @@
             this.lbAlarmsInfo.TabIndex = 3;
             this.lbAlarmsInfo.Text = "Alarms Info";
             // 
-            // richTextBox1
+            // txtAlarmsInfo
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(406, 214);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(459, 301);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.txtAlarmsInfo.Location = new System.Drawing.Point(406, 214);
+            this.txtAlarmsInfo.Name = "txtAlarmsInfo";
+            this.txtAlarmsInfo.Size = new System.Drawing.Size(459, 301);
+            this.txtAlarmsInfo.TabIndex = 4;
+            this.txtAlarmsInfo.Text = "";
             // 
             // chartSensors
             // 
@@ -266,7 +266,7 @@
             this.Controls.Add(this.lblSensorTest);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.chartSensors);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.txtAlarmsInfo);
             this.Controls.Add(this.lbAlarmsInfo);
             this.Controls.Add(this.lbSensorsInfo);
             this.Controls.Add(this.gbParameters);
@@ -299,7 +299,7 @@
         private System.Windows.Forms.ComboBox cbCity;
         private System.Windows.Forms.Label lbSensorsInfo;
         private System.Windows.Forms.Label lbAlarmsInfo;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtAlarmsInfo;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartSensors;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblSensorTest;

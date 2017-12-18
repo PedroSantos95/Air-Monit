@@ -36,7 +36,8 @@ namespace AirMonit_Admin
             lblCityTest.Text = city;
             lblDateTest.Text = date;
             AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
-            Sensor s = service.GetSensorByName(sensorType, city);
+            service.GetSensorByName(sensorType);
+            
             //checkParams();
             //display sensors;
             //display alarms;

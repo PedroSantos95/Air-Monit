@@ -31,6 +31,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
@@ -53,6 +54,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 reader.Close();
                 conn.Close();
@@ -80,6 +82,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
@@ -106,6 +109,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
@@ -131,6 +135,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
@@ -138,7 +143,34 @@ namespace AirMonit_SERVICE.Controllers
             conn.Close();
             return sensors;
         }
+/*
+        public List<Sensor> GetHourlyStatsBySensorCityAndName(string name, string city)
+        {
+            List<Sensor> sensors = new List<Sensor>();
+            SqlConnection conn = null;
+            conn = new SqlConnection(str_conn);
+            conn.Open();
 
+            SqlCommand cmd = new SqlCommand("Select Time, value from Sensors where Name='" + name + "' and City='" + city + "'", conn);
+
+           SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Sensor s = new Sensor();
+                s.Id = (int)reader["id"];
+                s.Name = (string)reader["name"];
+                s.Value = (int)reader["value"];
+                s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
+                s.City = (string)reader["city"];
+                sensors.Add(s);
+            }
+
+            reader.Close();
+            conn.Close();
+            return sensors;
+        }
+*/
         [Route("api/sensors/{name}/{city}/{date}")]
         public List<Sensor> GetSensorByNameAndCityAndDate(string name, string city, string date)
         {
@@ -156,6 +188,7 @@ namespace AirMonit_SERVICE.Controllers
                 s.Name = (string)reader["name"];
                 s.Value = (int)reader["value"];
                 s.Date = (string)reader["date"];
+                s.Time = (string)reader["time"];
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }

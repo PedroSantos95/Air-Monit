@@ -29,6 +29,8 @@ namespace AirMonit_Admin
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+
+
             lstSensorsInfo.Items.Clear();
             string[] sensorType = checkSensorType();
             string city = checkCity();
@@ -50,6 +52,24 @@ namespace AirMonit_Admin
             lblDateTest.Text = date;
             AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
             //List<Sensor> sensors = service.GetSensorByNameAndCity(sensorType, city);
+
+            if (cbHourlyStats.Checked)
+            {
+                label5.Text = "[Sensors]:";
+                if (cbNO2.Checked)
+                {
+                    checkHourlyStats("NO2", city);
+                }
+                if (cbCO.Checked)
+                {
+                    checkHourlyStats("CO", city);
+                }
+                if (cbO3.Checked)
+                {
+                    checkHourlyStats("O3", city);
+                }
+            }
+
             for (int i = 0; i < sensorType.Length; i++)
             {
                 if (city == "Todas")
@@ -147,14 +167,57 @@ namespace AirMonit_Admin
                     }
 
                 }
-                if (cbHourlyStats.Checked)
-                {
-                    return "TODO: Show Hourly Stats from date1";
-                }
                 string[] date = dtpDate1.Value.ToString().Split(' ');
                 return date[0];
             }
             return "Date not selected";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (cbHourlyStats.Checked)
+            {
+                label5.Text = "[Alarms]:";
+            }
+        }
+
+        private void checkHourlyStats(string name, string city)
+        {
+            AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
+            List<Sensor> sensors = service.GetSensorByNameAndCity(name, city);
+            hourlyAvg(sensors);
+        }
+
+        private void hourlyAvg(List<Sensor> sensors)
+        {
+            int[] hourlyValue = new int[24];
+            int[] count = new int[24];
+            string name = "";
+            string city = "";
+            foreach (Sensor s in sensors)
+            {
+                string time = s.Time;
+                name = s.Name;
+                city = s.City;
+                string[] hour = time.Split(':');
+                s.Time = hour[0];
+
+                for (int i = 0; i < 24; i++)
+                {
+                    hourlyValue[i] += s.Value;
+                    count[i]++;
+                }
+
+            }
+            for(int y = 0; y<24; y++)
+            {
+                if (hourlyValue[y] != 0)
+                {
+                    int avg = hourlyValue[y] / count[y];
+                    lstHourlyInfo.Items.Add(" Name: " + name + " - City: " + city + " - Average: " + avg + " - Hour: " + hourlyValue[y]);
+                }
+            }
+
         }
     }
 }

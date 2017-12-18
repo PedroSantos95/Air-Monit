@@ -33,13 +33,13 @@
             this.cbCO = new System.Windows.Forms.CheckBox();
             this.cbNO2 = new System.Windows.Forms.CheckBox();
             this.gbParameters = new System.Windows.Forms.GroupBox();
-            this.cbHourlyStats = new System.Windows.Forms.CheckBox();
             this.dtpDate2 = new System.Windows.Forms.DateTimePicker();
             this.dtpDate1 = new System.Windows.Forms.DateTimePicker();
             this.cbDate2 = new System.Windows.Forms.CheckBox();
             this.cbDate1 = new System.Windows.Forms.CheckBox();
             this.lbCity = new System.Windows.Forms.Label();
             this.cbCity = new System.Windows.Forms.ComboBox();
+            this.cbHourlyStats = new System.Windows.Forms.CheckBox();
             this.lbSensorsInfo = new System.Windows.Forms.Label();
             this.lbAlarmsInfo = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -48,6 +48,13 @@
             this.lblDateTest = new System.Windows.Forms.Label();
             this.lstAlarmsInfo = new System.Windows.Forms.ListBox();
             this.lstSensorsInfo = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lstHourlyInfo = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.gbSensors.SuspendLayout();
             this.gbParameters.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +66,7 @@
             this.gbSensors.Controls.Add(this.cbNO2);
             this.gbSensors.Location = new System.Drawing.Point(13, 13);
             this.gbSensors.Name = "gbSensors";
-            this.gbSensors.Size = new System.Drawing.Size(200, 100);
+            this.gbSensors.Size = new System.Drawing.Size(166, 111);
             this.gbSensors.TabIndex = 0;
             this.gbSensors.TabStop = false;
             this.gbSensors.Text = "Sensors";
@@ -103,22 +110,12 @@
             this.gbParameters.Controls.Add(this.cbDate1);
             this.gbParameters.Controls.Add(this.lbCity);
             this.gbParameters.Controls.Add(this.cbCity);
-            this.gbParameters.Location = new System.Drawing.Point(240, 13);
+            this.gbParameters.Location = new System.Drawing.Point(217, 13);
             this.gbParameters.Name = "gbParameters";
-            this.gbParameters.Size = new System.Drawing.Size(356, 160);
+            this.gbParameters.Size = new System.Drawing.Size(356, 155);
             this.gbParameters.TabIndex = 1;
             this.gbParameters.TabStop = false;
             this.gbParameters.Text = "Parameters";
-            // 
-            // cbHourlyStats
-            // 
-            this.cbHourlyStats.AutoSize = true;
-            this.cbHourlyStats.Location = new System.Drawing.Point(36, 120);
-            this.cbHourlyStats.Name = "cbHourlyStats";
-            this.cbHourlyStats.Size = new System.Drawing.Size(103, 17);
-            this.cbHourlyStats.TabIndex = 6;
-            this.cbHourlyStats.Text = "Get Hourly Stats";
-            this.cbHourlyStats.UseVisualStyleBackColor = true;
             // 
             // dtpDate2
             // 
@@ -171,84 +168,162 @@
             this.cbCity.Size = new System.Drawing.Size(121, 21);
             this.cbCity.TabIndex = 0;
             // 
+            // cbHourlyStats
+            // 
+            this.cbHourlyStats.AutoSize = true;
+            this.cbHourlyStats.Location = new System.Drawing.Point(19, 122);
+            this.cbHourlyStats.Name = "cbHourlyStats";
+            this.cbHourlyStats.Size = new System.Drawing.Size(103, 17);
+            this.cbHourlyStats.TabIndex = 6;
+            this.cbHourlyStats.Text = "Get Hourly Stats";
+            this.cbHourlyStats.UseVisualStyleBackColor = true;
+            // 
             // lbSensorsInfo
             // 
             this.lbSensorsInfo.AutoSize = true;
             this.lbSensorsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSensorsInfo.Location = new System.Drawing.Point(17, 187);
+            this.lbSensorsInfo.Location = new System.Drawing.Point(9, 284);
             this.lbSensorsInfo.Name = "lbSensorsInfo";
-            this.lbSensorsInfo.Size = new System.Drawing.Size(114, 24);
+            this.lbSensorsInfo.Size = new System.Drawing.Size(119, 24);
             this.lbSensorsInfo.TabIndex = 2;
-            this.lbSensorsInfo.Text = "Sensors Info";
+            this.lbSensorsInfo.Text = "Sensors Info:";
             // 
             // lbAlarmsInfo
             // 
             this.lbAlarmsInfo.AutoSize = true;
             this.lbAlarmsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAlarmsInfo.Location = new System.Drawing.Point(442, 187);
+            this.lbAlarmsInfo.Location = new System.Drawing.Point(502, 284);
             this.lbAlarmsInfo.Name = "lbAlarmsInfo";
-            this.lbAlarmsInfo.Size = new System.Drawing.Size(103, 24);
+            this.lbAlarmsInfo.Size = new System.Drawing.Size(108, 24);
             this.lbAlarmsInfo.TabIndex = 3;
-            this.lbAlarmsInfo.Text = "Alarms Info";
+            this.lbAlarmsInfo.Text = "Alarms Info:";
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(633, 24);
+            this.btnSearch.Location = new System.Drawing.Point(34, 130);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(135, 65);
             this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "Search";
+            this.btnSearch.Text = "Search Sensors";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblSensorTest
             // 
             this.lblSensorTest.AutoSize = true;
-            this.lblSensorTest.Location = new System.Drawing.Point(614, 99);
+            this.lblSensorTest.Location = new System.Drawing.Point(96, 217);
             this.lblSensorTest.Name = "lblSensorTest";
-            this.lblSensorTest.Size = new System.Drawing.Size(35, 13);
+            this.lblSensorTest.Size = new System.Drawing.Size(0, 13);
             this.lblSensorTest.TabIndex = 7;
-            this.lblSensorTest.Text = "label1";
             // 
             // lblCityTest
             // 
             this.lblCityTest.AutoSize = true;
-            this.lblCityTest.Location = new System.Drawing.Point(614, 124);
+            this.lblCityTest.Location = new System.Drawing.Point(96, 239);
             this.lblCityTest.Name = "lblCityTest";
-            this.lblCityTest.Size = new System.Drawing.Size(35, 13);
+            this.lblCityTest.Size = new System.Drawing.Size(0, 13);
             this.lblCityTest.TabIndex = 8;
-            this.lblCityTest.Text = "label1";
             // 
             // lblDateTest
             // 
             this.lblDateTest.AutoSize = true;
-            this.lblDateTest.Location = new System.Drawing.Point(614, 146);
+            this.lblDateTest.Location = new System.Drawing.Point(96, 261);
             this.lblDateTest.Name = "lblDateTest";
-            this.lblDateTest.Size = new System.Drawing.Size(35, 13);
+            this.lblDateTest.Size = new System.Drawing.Size(0, 13);
             this.lblDateTest.TabIndex = 9;
-            this.lblDateTest.Text = "label1";
             // 
             // lstAlarmsInfo
             // 
             this.lstAlarmsInfo.FormattingEnabled = true;
-            this.lstAlarmsInfo.Location = new System.Drawing.Point(446, 215);
+            this.lstAlarmsInfo.Location = new System.Drawing.Point(506, 311);
             this.lstAlarmsInfo.Name = "lstAlarmsInfo";
-            this.lstAlarmsInfo.Size = new System.Drawing.Size(417, 303);
+            this.lstAlarmsInfo.Size = new System.Drawing.Size(473, 303);
             this.lstAlarmsInfo.TabIndex = 10;
             // 
             // lstSensorsInfo
             // 
             this.lstSensorsInfo.FormattingEnabled = true;
-            this.lstSensorsInfo.Location = new System.Drawing.Point(13, 215);
+            this.lstSensorsInfo.Location = new System.Drawing.Point(12, 311);
             this.lstSensorsInfo.Name = "lstSensorsInfo";
-            this.lstSensorsInfo.Size = new System.Drawing.Size(402, 303);
+            this.lstSensorsInfo.Size = new System.Drawing.Size(478, 303);
             this.lstSensorsInfo.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 217);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Air Parameter:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(63, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "City:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(57, 261);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Date:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(239, 187);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(135, 65);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Search Alarms";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(579, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(140, 24);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Hourly Statistics";
+            // 
+            // lstHourlyInfo
+            // 
+            this.lstHourlyInfo.FormattingEnabled = true;
+            this.lstHourlyInfo.Location = new System.Drawing.Point(579, 36);
+            this.lstHourlyInfo.Name = "lstHourlyInfo";
+            this.lstHourlyInfo.Size = new System.Drawing.Size(400, 225);
+            this.lstHourlyInfo.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.label5.Location = new System.Drawing.Point(715, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(0, 24);
+            this.label5.TabIndex = 18;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 525);
+            this.ClientSize = new System.Drawing.Size(991, 626);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lstHourlyInfo);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lstSensorsInfo);
             this.Controls.Add(this.lstAlarmsInfo);
             this.Controls.Add(this.lblDateTest);
@@ -260,7 +335,7 @@
             this.Controls.Add(this.gbParameters);
             this.Controls.Add(this.gbSensors);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "AirMonit Admin";
             this.gbSensors.ResumeLayout(false);
             this.gbSensors.PerformLayout();
             this.gbParameters.ResumeLayout(false);
@@ -292,6 +367,13 @@
         private System.Windows.Forms.Label lblDateTest;
         private System.Windows.Forms.ListBox lstAlarmsInfo;
         private System.Windows.Forms.ListBox lstSensorsInfo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ListBox lstHourlyInfo;
+        private System.Windows.Forms.Label label5;
     }
 }
 

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace AirMonit_Admin
 {
@@ -28,41 +29,89 @@ namespace AirMonit_Admin
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //checkSensors();
-            string sensorType = checkSensorType();
+            lstSensorsInfo.Items.Clear();
+            string[] sensorType = checkSensorType();
             string city = checkCity();
             string date = checkDate();
-            lblSensorTest.Text = sensorType;
+            if (sensorType.Length == 3)
+            {
+                lblSensorTest.Text = sensorType[0] + " " + sensorType[1] + " " + sensorType[2];
+            }else if (sensorType.Length == 2)
+            {
+                lblSensorTest.Text = sensorType[0] + " " + sensorType[1];
+            }else if (sensorType.Length == 1)
+            {
+                lblSensorTest.Text = sensorType[0];
+            }
+            
             lblCityTest.Text = city;
             lblDateTest.Text = date;
             AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
-            service.GetSensorByName(sensorType);
-            
-            //checkParams();
-            //display sensors;
-            //display alarms;
+            //List<Sensor> sensors = service.GetSensorByNameAndCity(sensorType, city);
+            if (cbCity.SelectedItem.ToString() == "Todas")
+            {
+                lblCityTest.Text = "Leiria" + "Coimbra" + "Lisboa" + "Porto";
+            }
+            for (int i=0; i<sensorType.Length; i++)
+            {
+                List<Sensor> sensors = service.GetSensorByNameAndCityAndDate(sensorType[i], city, date);
+                foreach (Sensor s in sensors)
+                {
+                    lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                }
+            }
+
         }
 
-        private string checkSensorType()
+        private string[] checkSensorType()
         {
             if (cbNO2.Checked)
             {
-                return "no2";
+                if (cbCO.Checked)
+                {
+                    if (cbO3.Checked)
+                    {
+                        string[] sensors1 = {"NO2", "CO", "O3" };
+                        return sensors1;
+                    }
+
+                    string[] sensors2 = { "NO2", "CO"};
+                    return sensors2;
+                }
+                if (cbO3.Checked)
+                {
+                    string[] sensors3 = { "NO2", "O3" };
+                    return sensors3;
+                }
+                string[] sensors4 = { "NO2" };
+                return sensors4;
             }
             if (cbCO.Checked)
             {
-                return "co";
+                if (cbO3.Checked)
+                {
+                    string[] sensors5 = { "CO", "O3" };
+                    return sensors5;
+                }
+                string[] sensors6 = { "CO" };
+                return sensors6;
             }
             if (cbO3.Checked)
             {
-                return "o3";
+                string[] sensors7 = { "O3" };
+                return sensors7;
             }
-            return null; //mostrar erro
+            string[] error = { "Sensor not selected" };
+            return error;
         }
 
         private string checkCity()
         {
-            return cbCity.SelectedItem.ToString();
+            if (cbCity.SelectedIndex > -1)
+            {
+                return cbCity.SelectedItem.ToString();
+            }
+            return "City not selected";
         }
 
         private string checkDate()
@@ -71,21 +120,28 @@ namespace AirMonit_Admin
             {
                 if (cbDate2.Checked)
                 {
-                    if(dtpDate2.Value > dtpDate1.Value) { }
-                    //fazer para as duas datas
-                    //metodo a implementar
-                    return dtpDate1.Value.ToString() + "  " + dtpDate2.Value.ToString();
+                    if (dtpDate2.Value > dtpDate1.Value)
+                    {
+                        return "Between [" + dtpDate1.Value.ToString() + " and " + dtpDate2.Value.ToString() + "]";
+                    }
+                    else if (cbHourlyStats.Checked)
+                    {
+                        return "Can't show hourly stats with 2 dates";
+                    }
+                    else
+                    {
+                        return "Date2 isn't after than Date1";
+                    }
+
                 }
                 if (cbHourlyStats.Checked)
                 {
-                    //fzer para as horas desse dia
-                    return dtpDate1.Value.ToString();
+                    return "TODO: Show Hourly Stats from date1";
                 }
-                //fazer para a date1
-                return dtpDate1.Value.ToString();
+                string[] date = dtpDate1.Value.ToString().Split(' ');
+                return date[0];
             }
-            //dizer que não há datas
-            return "Não selecionou a data certa";
+            return "Date not selected";
         }
     }
 }

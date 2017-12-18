@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.gbSensors = new System.Windows.Forms.GroupBox();
             this.cbO3 = new System.Windows.Forms.CheckBox();
             this.cbCO = new System.Windows.Forms.CheckBox();
@@ -45,15 +42,14 @@
             this.cbCity = new System.Windows.Forms.ComboBox();
             this.lbSensorsInfo = new System.Windows.Forms.Label();
             this.lbAlarmsInfo = new System.Windows.Forms.Label();
-            this.txtAlarmsInfo = new System.Windows.Forms.RichTextBox();
-            this.chartSensors = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblSensorTest = new System.Windows.Forms.Label();
             this.lblCityTest = new System.Windows.Forms.Label();
             this.lblDateTest = new System.Windows.Forms.Label();
+            this.lstAlarmsInfo = new System.Windows.Forms.ListBox();
+            this.lstSensorsInfo = new System.Windows.Forms.ListBox();
             this.gbSensors.SuspendLayout();
             this.gbParameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartSensors)).BeginInit();
             this.SuspendLayout();
             // 
             // gbSensors
@@ -189,35 +185,11 @@
             // 
             this.lbAlarmsInfo.AutoSize = true;
             this.lbAlarmsInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAlarmsInfo.Location = new System.Drawing.Point(403, 187);
+            this.lbAlarmsInfo.Location = new System.Drawing.Point(442, 187);
             this.lbAlarmsInfo.Name = "lbAlarmsInfo";
             this.lbAlarmsInfo.Size = new System.Drawing.Size(103, 24);
             this.lbAlarmsInfo.TabIndex = 3;
             this.lbAlarmsInfo.Text = "Alarms Info";
-            // 
-            // txtAlarmsInfo
-            // 
-            this.txtAlarmsInfo.Location = new System.Drawing.Point(406, 214);
-            this.txtAlarmsInfo.Name = "txtAlarmsInfo";
-            this.txtAlarmsInfo.Size = new System.Drawing.Size(459, 301);
-            this.txtAlarmsInfo.TabIndex = 4;
-            this.txtAlarmsInfo.Text = "";
-            // 
-            // chartSensors
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartSensors.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartSensors.Legends.Add(legend1);
-            this.chartSensors.Location = new System.Drawing.Point(21, 215);
-            this.chartSensors.Name = "chartSensors";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartSensors.Series.Add(series1);
-            this.chartSensors.Size = new System.Drawing.Size(358, 300);
-            this.chartSensors.TabIndex = 5;
-            this.chartSensors.Text = "chartSensor";
             // 
             // btnSearch
             // 
@@ -256,17 +228,33 @@
             this.lblDateTest.TabIndex = 9;
             this.lblDateTest.Text = "label1";
             // 
+            // lstAlarmsInfo
+            // 
+            this.lstAlarmsInfo.FormattingEnabled = true;
+            this.lstAlarmsInfo.Location = new System.Drawing.Point(446, 215);
+            this.lstAlarmsInfo.Name = "lstAlarmsInfo";
+            this.lstAlarmsInfo.Size = new System.Drawing.Size(417, 303);
+            this.lstAlarmsInfo.TabIndex = 10;
+            // 
+            // lstSensorsInfo
+            // 
+            this.lstSensorsInfo.FormattingEnabled = true;
+            this.lstSensorsInfo.Location = new System.Drawing.Point(13, 215);
+            this.lstSensorsInfo.Name = "lstSensorsInfo";
+            this.lstSensorsInfo.Size = new System.Drawing.Size(402, 303);
+            this.lstSensorsInfo.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 525);
+            this.Controls.Add(this.lstSensorsInfo);
+            this.Controls.Add(this.lstAlarmsInfo);
             this.Controls.Add(this.lblDateTest);
             this.Controls.Add(this.lblCityTest);
             this.Controls.Add(this.lblSensorTest);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.chartSensors);
-            this.Controls.Add(this.txtAlarmsInfo);
             this.Controls.Add(this.lbAlarmsInfo);
             this.Controls.Add(this.lbSensorsInfo);
             this.Controls.Add(this.gbParameters);
@@ -277,7 +265,6 @@
             this.gbSensors.PerformLayout();
             this.gbParameters.ResumeLayout(false);
             this.gbParameters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartSensors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,12 +286,12 @@
         private System.Windows.Forms.ComboBox cbCity;
         private System.Windows.Forms.Label lbSensorsInfo;
         private System.Windows.Forms.Label lbAlarmsInfo;
-        private System.Windows.Forms.RichTextBox txtAlarmsInfo;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartSensors;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Label lblSensorTest;
         private System.Windows.Forms.Label lblCityTest;
         private System.Windows.Forms.Label lblDateTest;
+        private System.Windows.Forms.ListBox lstAlarmsInfo;
+        private System.Windows.Forms.ListBox lstSensorsInfo;
     }
 }
 

@@ -58,6 +58,7 @@ namespace AirMonit_DLog
                 sensorAlarm.Id = Int32.Parse(wordsA[4]);
                 sensorAlarm.Name = wordsA[6];
                 sensorAlarm.Date = wordsA[8];
+                sensorAlarm.Time = wordsA[8];
                 sensorAlarm.City = wordsA[10];
                 sensorAlarm.Value = Int32.Parse(wordsA[12]);
                 sensorAlarm.Trigger_rule = wordsA[14];
@@ -76,6 +77,7 @@ namespace AirMonit_DLog
                 sensor.Name = words[4];
                 sensor.Value = Int32.Parse(words[6]);
                 sensor.Date = words[8];
+                sensor.Time = words[8];
                 sensor.City = words[10];
                 service.PostSensor(sensor);
                 Console.WriteLine("Escrever na tabela Sensors!");

@@ -36,31 +36,44 @@ namespace AirMonit_Admin
             if (sensorType.Length == 3)
             {
                 lblSensorTest.Text = sensorType[0] + " " + sensorType[1] + " " + sensorType[2];
-            }else if (sensorType.Length == 2)
+            }
+            else if (sensorType.Length == 2)
             {
                 lblSensorTest.Text = sensorType[0] + " " + sensorType[1];
-            }else if (sensorType.Length == 1)
+            }
+            else if (sensorType.Length == 1)
             {
                 lblSensorTest.Text = sensorType[0];
             }
-            
+
             lblCityTest.Text = city;
             lblDateTest.Text = date;
             AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
             //List<Sensor> sensors = service.GetSensorByNameAndCity(sensorType, city);
-            if (cbCity.SelectedItem.ToString() == "Todas")
+            for (int i = 0; i < sensorType.Length; i++)
             {
-                lblCityTest.Text = "Leiria" + "Coimbra" + "Lisboa" + "Porto";
-            }
-            for (int i=0; i<sensorType.Length; i++)
-            {
-                List<Sensor> sensors = service.GetSensorByNameAndCityAndDate(sensorType[i], city, date);
-                foreach (Sensor s in sensors)
+                if (city == "Todas")
                 {
-                    lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                    lblCityTest.Text = "Leiria Coimbra Lisboa Porto";
+                    string[] allCities = { "Leiria", "Coimbra", "Lisboa", "Porto" };
+                    for (int j = 0; j < allCities.Length; j++)
+                    {
+                        List<Sensor> sensorsAllCities = service.GetSensorByNameAndCityAndDate(sensorType[i], allCities[j], date);
+                        foreach (Sensor s in sensorsAllCities)
+                        {
+                            lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                        }
+                    }
+                }
+                else
+                {
+                    List<Sensor> sensors = service.GetSensorByNameAndCityAndDate(sensorType[i], city, date);
+                    foreach (Sensor s in sensors)
+                    {
+                        lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                    }
                 }
             }
-
         }
 
         private string[] checkSensorType()
@@ -71,11 +84,11 @@ namespace AirMonit_Admin
                 {
                     if (cbO3.Checked)
                     {
-                        string[] sensors1 = {"NO2", "CO", "O3" };
+                        string[] sensors1 = { "NO2", "CO", "O3" };
                         return sensors1;
                     }
 
-                    string[] sensors2 = { "NO2", "CO"};
+                    string[] sensors2 = { "NO2", "CO" };
                     return sensors2;
                 }
                 if (cbO3.Checked)
@@ -111,7 +124,7 @@ namespace AirMonit_Admin
             {
                 return cbCity.SelectedItem.ToString();
             }
-            return "City not selected";
+            return "Todas";
         }
 
         private string checkDate()

@@ -114,6 +114,31 @@ namespace AirMonit_SERVICE.Controllers
             return sensors;
         }
 
+        [Route("api/sensors/{name}/{date}")]
+        public List<Sensor> GetSensorByNameAndDateForAllCities(string name, string date)
+        {
+            List<Sensor> sensors = new List<Sensor>();
+            SqlConnection conn = null;
+            conn = new SqlConnection(str_conn);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name='" + name + "' and Date='" + date + "'", conn);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Sensor s = new Sensor();
+                s.Id = (int)reader["id"];
+                s.Name = (string)reader["name"];
+                s.Value = (int)reader["value"];
+                s.Date = (string)reader["date"];
+                s.City = (string)reader["city"];
+                sensors.Add(s);
+            }
+            reader.Close();
+            conn.Close();
+            return sensors;
+        }
+
         [Route("api/sensors/{name}/{city}/{date}")]
         public List<Sensor> GetSensorByNameAndCityAndDate(string name, string city, string date)
         {

@@ -200,11 +200,97 @@ namespace AirMonit_Admin
             return "Date not selected";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSearch_Alarms_click(object sender, EventArgs e)
         {
+            lstAlarmsInfo.Items.Clear();
+            string[] sensorType = checkSensorType();
+            string city = checkCity();
+            string date = checkDate();
+            string[] dates = date.Split('#');
+            if (sensorType.Length == 3)
+            {
+                lblSensorTest.Text = sensorType[0] + " " + sensorType[1] + " " + sensorType[2];
+            }
+            else if (sensorType.Length == 2)
+            {
+                lblSensorTest.Text = sensorType[0] + " " + sensorType[1];
+            }
+            else if (sensorType.Length == 1)
+            {
+                lblSensorTest.Text = sensorType[0];
+            }
+
+            lblCityTest.Text = city;
+            lblDateTest.Text = date;
+            /*lstHourlyInfo.Items.Add(dates[0]);
+            lstHourlyInfo.Items.Add(dates[1]);*/
+            AirMonit_SERVICE.Controllers.AlarmsController service = new AirMonit_SERVICE.Controllers.AlarmsController();
+            //List<Sensor> sensors = service.GetSensorByNameAndCity(sensorType, city);
+
             if (cbHourlyStats.Checked)
             {
-                label5.Text = "[Alarms]:";
+                label5.Text = "[Sensors]:";
+                if (cbNO2.Checked)
+                {
+                    checkHourlyStats("NO2", city);
+                }
+                if (cbCO.Checked)
+                {
+                    checkHourlyStats("CO", city);
+                }
+                if (cbO3.Checked)
+                {
+                    checkHourlyStats("O3", city);
+                }
+            }
+
+            for (int i = 0; i < sensorType.Length; i++)
+            {
+                if (city == "Todas")
+                {
+                    lblCityTest.Text = "Leiria Coimbra Lisboa Porto";
+                    string[] allCities = { "Leiria", "Coimbra", "Lisboa", "Porto" };
+                    for (int j = 0; j < allCities.Length; j++)
+                    {
+                        if (dates.Length == 2)
+                        {
+                            List<Sensor> alarmsAllCitiesBetweenTwoDates = service.GetAlarmsByNameAndCityAndBetweenTwoDates(sensorType[i], allCities[j], dates[0], dates[1]);
+                            foreach (Sensor s in alarmsAllCitiesBetweenTwoDates)
+                            {
+                                lstAlarmsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date + " - Trigger Rule: " + s.Trigger_rule + " - Trigger Value: " + s.Trigger_value);
+                            }
+                        }
+                        else
+                        {
+                            List<Sensor> alarmsAllCities = service.GetAlarmsByNameAndCityAndDate(sensorType[i], allCities[j], date);
+                            foreach (Sensor s in alarmsAllCities)
+                            {
+                                lstAlarmsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date + " - Trigger Rule: " + s.Trigger_rule + " - Trigger Value: " + s.Trigger_value);
+                            }
+                        }
+
+                    }
+                }
+                else
+                {
+                    if (dates.Length == 2)
+                    {
+                        List<Sensor> alarmsAllCitiesBetweenTwoDates = service.GetAlarmsByNameAndCityAndBetweenTwoDates(sensorType[i], city, dates[0], dates[1]);
+                        foreach (Sensor s in alarmsAllCitiesBetweenTwoDates)
+                        {
+                            lstAlarmsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date + " - Trigger Rule: " + s.Trigger_rule + " - Trigger Value: " + s.Trigger_value);
+                        }
+                    }
+                    else
+                    {
+                        List<Sensor> sensors = service.GetAlarmsByNameAndCityAndDate(sensorType[i], city, date);
+                        foreach (Sensor s in sensors)
+                        {
+                            lstAlarmsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date + " - Trigger Rule: " + s.Trigger_rule + " - Trigger Value: " + s.Trigger_value);
+                        }
+                    }
+
+                }
             }
         }
 

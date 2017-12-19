@@ -33,13 +33,13 @@
             this.cbCO = new System.Windows.Forms.CheckBox();
             this.cbNO2 = new System.Windows.Forms.CheckBox();
             this.gbParameters = new System.Windows.Forms.GroupBox();
+            this.cbHourlyStats = new System.Windows.Forms.CheckBox();
             this.dtpDate2 = new System.Windows.Forms.DateTimePicker();
             this.dtpDate1 = new System.Windows.Forms.DateTimePicker();
             this.cbDate2 = new System.Windows.Forms.CheckBox();
             this.cbDate1 = new System.Windows.Forms.CheckBox();
             this.lbCity = new System.Windows.Forms.Label();
             this.cbCity = new System.Windows.Forms.ComboBox();
-            this.cbHourlyStats = new System.Windows.Forms.CheckBox();
             this.lbSensorsInfo = new System.Windows.Forms.Label();
             this.lbAlarmsInfo = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSearch_Alarms = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lstHourlyInfo = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -117,6 +117,16 @@
             this.gbParameters.TabStop = false;
             this.gbParameters.Text = "Parameters";
             // 
+            // cbHourlyStats
+            // 
+            this.cbHourlyStats.AutoSize = true;
+            this.cbHourlyStats.Location = new System.Drawing.Point(19, 122);
+            this.cbHourlyStats.Name = "cbHourlyStats";
+            this.cbHourlyStats.Size = new System.Drawing.Size(103, 17);
+            this.cbHourlyStats.TabIndex = 6;
+            this.cbHourlyStats.Text = "Get Hourly Stats";
+            this.cbHourlyStats.UseVisualStyleBackColor = true;
+            // 
             // dtpDate2
             // 
             this.dtpDate2.Location = new System.Drawing.Point(188, 80);
@@ -167,16 +177,6 @@
             this.cbCity.Name = "cbCity";
             this.cbCity.Size = new System.Drawing.Size(121, 21);
             this.cbCity.TabIndex = 0;
-            // 
-            // cbHourlyStats
-            // 
-            this.cbHourlyStats.AutoSize = true;
-            this.cbHourlyStats.Location = new System.Drawing.Point(19, 122);
-            this.cbHourlyStats.Name = "cbHourlyStats";
-            this.cbHourlyStats.Size = new System.Drawing.Size(103, 17);
-            this.cbHourlyStats.TabIndex = 6;
-            this.cbHourlyStats.Text = "Get Hourly Stats";
-            this.cbHourlyStats.UseVisualStyleBackColor = true;
             // 
             // lbSensorsInfo
             // 
@@ -275,15 +275,15 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Date:";
             // 
-            // button1
+            // buttonSearch_Alarms
             // 
-            this.button1.Location = new System.Drawing.Point(239, 187);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 65);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Search Alarms";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonSearch_Alarms.Location = new System.Drawing.Point(239, 187);
+            this.buttonSearch_Alarms.Name = "buttonSearch_Alarms";
+            this.buttonSearch_Alarms.Size = new System.Drawing.Size(135, 65);
+            this.buttonSearch_Alarms.TabIndex = 15;
+            this.buttonSearch_Alarms.Text = "Search Alarms";
+            this.buttonSearch_Alarms.UseVisualStyleBackColor = true;
+            this.buttonSearch_Alarms.Click += new System.EventHandler(this.buttonSearch_Alarms_click);
             // 
             // label4
             // 
@@ -320,7 +320,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lstHourlyInfo);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSearch_Alarms);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -370,7 +370,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSearch_Alarms;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListBox lstHourlyInfo;
         private System.Windows.Forms.Label label5;

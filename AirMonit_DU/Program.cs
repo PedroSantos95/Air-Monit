@@ -60,7 +60,7 @@ namespace AirMonit_DU
             root.AppendChild(city);
             doc.AppendChild(root);
             String data = doc.OuterXml;
-            Console.WriteLine(data);
+            //Console.WriteLine(data);
             //doc.Save(@"example.xml");
 
             if (str_parts[1].Equals("NO2"))

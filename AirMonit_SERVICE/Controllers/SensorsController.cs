@@ -143,17 +143,46 @@ namespace AirMonit_SERVICE.Controllers
             conn.Close();
             return sensors;
         }
-/*
-        public List<Sensor> GetHourlyStatsBySensorCityAndName(string name, string city)
+
+       
+        /*
+                public List<Sensor> GetHourlyStatsBySensorCityAndName(string name, string city)
+                {
+                    List<Sensor> sensors = new List<Sensor>();
+                    SqlConnection conn = null;
+                    conn = new SqlConnection(str_conn);
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("Select Time, value from Sensors where Name='" + name + "' and City='" + city + "'", conn);
+
+                   SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Sensor s = new Sensor();
+                        s.Id = (int)reader["id"];
+                        s.Name = (string)reader["name"];
+                        s.Value = (int)reader["value"];
+                        s.Date = (string)reader["date"];
+                        s.Time = (string)reader["time"];
+                        s.City = (string)reader["city"];
+                        sensors.Add(s);
+                    }
+
+                    reader.Close();
+                    conn.Close();
+                    return sensors;
+                }
+        */
+        [Route("api/sensors/{name}/{city}/{date}")]
+        public List<Sensor> GetSensorByNameAndCityAndDate(string name, string city, string date)
         {
             List<Sensor> sensors = new List<Sensor>();
             SqlConnection conn = null;
             conn = new SqlConnection(str_conn);
             conn.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name='" + name + "' and City='" + city + "' and Date='" + date + "'", conn);
 
-            SqlCommand cmd = new SqlCommand("Select Time, value from Sensors where Name='" + name + "' and City='" + city + "'", conn);
-
-           SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Sensor s = new Sensor();
@@ -165,20 +194,19 @@ namespace AirMonit_SERVICE.Controllers
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
-
             reader.Close();
             conn.Close();
             return sensors;
         }
-*/
+
         [Route("api/sensors/{name}/{city}/{date}")]
-        public List<Sensor> GetSensorByNameAndCityAndDate(string name, string city, string date)
+        public List<Sensor> GetSensorByNameAndCityAndBetweenTwoDates(string name, string city, string date1, string date2)
         {
             List<Sensor> sensors = new List<Sensor>();
             SqlConnection conn = null;
             conn = new SqlConnection(str_conn);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name='" + name + "' and City='" + city + "' and Date='" + date + "'", conn);
+            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name='" + name + "' and City='" + city + "' and Date between '" + date1 + "' and '" + date2 + "'", conn);
 
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

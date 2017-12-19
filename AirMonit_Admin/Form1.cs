@@ -35,6 +35,7 @@ namespace AirMonit_Admin
             string[] sensorType = checkSensorType();
             string city = checkCity();
             string date = checkDate();
+            string[] dates = date.Split('#');
             if (sensorType.Length == 3)
             {
                 lblSensorTest.Text = sensorType[0] + " " + sensorType[1] + " " + sensorType[2];
@@ -50,6 +51,8 @@ namespace AirMonit_Admin
 
             lblCityTest.Text = city;
             lblDateTest.Text = date;
+            /*lstHourlyInfo.Items.Add(dates[0]);
+            lstHourlyInfo.Items.Add(dates[1]);*/
             AirMonit_SERVICE.Controllers.SensorsController service = new AirMonit_SERVICE.Controllers.SensorsController();
             //List<Sensor> sensors = service.GetSensorByNameAndCity(sensorType, city);
 
@@ -71,27 +74,50 @@ namespace AirMonit_Admin
             }
 
             for (int i = 0; i < sensorType.Length; i++)
-            {
+            {   
                 if (city == "Todas")
                 {
                     lblCityTest.Text = "Leiria Coimbra Lisboa Porto";
                     string[] allCities = { "Leiria", "Coimbra", "Lisboa", "Porto" };
                     for (int j = 0; j < allCities.Length; j++)
                     {
-                        List<Sensor> sensorsAllCities = service.GetSensorByNameAndCityAndDate(sensorType[i], allCities[j], date);
-                        foreach (Sensor s in sensorsAllCities)
+                        if (dates.Length == 2)
                         {
-                            lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                            List<Sensor> sensorsAllCitiesBetweenTwoDates = service.GetSensorByNameAndCityAndBetweenTwoDates(sensorType[i], allCities[j], dates[0], dates[1]);
+                            foreach (Sensor s in sensorsAllCitiesBetweenTwoDates)
+                            {
+                                lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                            }
                         }
+                        else
+                        {
+                            List<Sensor> sensorsAllCities = service.GetSensorByNameAndCityAndDate(sensorType[i], allCities[j], date);
+                            foreach (Sensor s in sensorsAllCities)
+                            {
+                                lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                            }
+                        }
+                        
                     }
                 }
                 else
                 {
-                    List<Sensor> sensors = service.GetSensorByNameAndCityAndDate(sensorType[i], city, date);
-                    foreach (Sensor s in sensors)
+                    if (dates.Length == 2)
                     {
-                        lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                        List<Sensor> sensorsAllCitiesBetweenTwoDates = service.GetSensorByNameAndCityAndBetweenTwoDates(sensorType[i], city, dates[0], dates[1]);
+                        foreach (Sensor s in sensorsAllCitiesBetweenTwoDates)
+                        {
+                            lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                        }
+                    }else
+                    {
+                        List<Sensor> sensors = service.GetSensorByNameAndCityAndDate(sensorType[i], city, date);
+                        foreach (Sensor s in sensors)
+                        {
+                            lstSensorsInfo.Items.Add("Id: " + s.Id + " - Name: " + s.Name + " - City: " + s.City + " - Value: " + s.Value + " - Date: " + s.Date);
+                        }
                     }
+                    
                 }
             }
         }
@@ -155,7 +181,8 @@ namespace AirMonit_Admin
                 {
                     if (dtpDate2.Value > dtpDate1.Value)
                     {
-                        return "Between [" + dtpDate1.Value.ToString() + " and " + dtpDate2.Value.ToString() + "]";
+                        string dates =  dtpDate1.Value.ToString() + "#" + dtpDate2.Value.ToString();
+                        return dates;
                     }
                     else if (cbHourlyStats.Checked)
                     {

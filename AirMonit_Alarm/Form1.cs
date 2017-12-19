@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -500,7 +501,12 @@ namespace AirMonit_Alarm
 
                 String data = doc.OuterXml;
                 m_cClient.Publish(topics[0], Encoding.UTF8.GetBytes(data));
-                Console.WriteLine(data);
+                data = Regex.Replace(data, "<.*?>", "#");
+                string data1 = Regex.Replace(data, "#+", "#");
+                string data2 = data1.Trim('#');
+                String[] wordsA = data2.Split('#');
+                Console.WriteLine("Foi disparado um Alarme com os seguintes valores:");
+                Console.WriteLine("ID: " + wordsA[0] + " - Name: " + wordsA[1] + " - Data:" + wordsA[2] + " - City: " + wordsA[3] + " - Value: " + wordsA[4] + " - Trigger_rule: " + wordsA[5] + " - Trigger_value: " + wordsA[6]+ "\n");
 
             }
             catch (Exception ex)

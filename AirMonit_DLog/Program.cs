@@ -64,7 +64,7 @@ namespace AirMonit_DLog
                 sensorAlarm.Trigger_rule = wordsA[14];
                 sensorAlarm.Trigger_value = Int32.Parse(wordsA[16]);
                 service.PostAlarm(sensorAlarm);
-                Console.WriteLine("Escrever na tabela Alarms!");
+                Console.WriteLine("Foi escrito um alarme na tabela Alarms!");
 
             }
             else
@@ -80,7 +80,7 @@ namespace AirMonit_DLog
                 sensor.Time = words[8];
                 sensor.City = words[10];
                 service.PostSensor(sensor);
-                Console.WriteLine("Escrever na tabela Sensors!");
+                Console.WriteLine("Foi escrito um sensor na tabela Sensors!");
             }
         }
         //catch (Exception ex)

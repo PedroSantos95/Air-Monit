@@ -205,8 +205,10 @@ namespace AirMonit_Admin
                 for (int i = 0; i < 24; i++)
                 {
                     hourlyValue[i] += s.Value;
-                    count[i]++;
+                    count[i]++;          
                 }
+
+                //Somar valores com s.Time igual
 
             }
             for(int y = 0; y<24; y++)

@@ -143,17 +143,16 @@ namespace AirMonit_SERVICE.Controllers
             conn.Close();
             return sensors;
         }
-/*
-        public List<Sensor> GetHourlyStatsBySensorCityAndName(string name, string city)
+
+        public List<Sensor> GetSensorByNameAndCityHourSplit(string name, string city)
         {
             List<Sensor> sensors = new List<Sensor>();
             SqlConnection conn = null;
             conn = new SqlConnection(str_conn);
             conn.Open();
+            SqlCommand cmd = new SqlCommand("Select * from Sensors where Name='" + name + "' and City='" + city + "'", conn);
 
-            SqlCommand cmd = new SqlCommand("Select Time, value from Sensors where Name='" + name + "' and City='" + city + "'", conn);
-
-           SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
                 Sensor s = new Sensor();
@@ -165,12 +164,11 @@ namespace AirMonit_SERVICE.Controllers
                 s.City = (string)reader["city"];
                 sensors.Add(s);
             }
-
             reader.Close();
             conn.Close();
             return sensors;
         }
-*/
+
         [Route("api/sensors/{name}/{city}/{date}")]
         public List<Sensor> GetSensorByNameAndCityAndDate(string name, string city, string date)
         {
@@ -204,7 +202,8 @@ namespace AirMonit_SERVICE.Controllers
             conn.Open();
             string date = s.Date;
             string[] data =date.Split(' ');
-            string str_cmd = "Insert into Sensors values ('" + s.Name + "', '" + s.Value + "', '" + data[0] + "', '" + data[1] + "', '" + s.City + "')";
+            string[] hour = data[1].Split(':');
+            string str_cmd = "Insert into Sensors values ('" + s.Name + "', '" + s.Value + "', '" + data[0] + "', '" + hour[0] + "', '" + s.City + "')";
             SqlCommand cmd = new SqlCommand(str_cmd, conn);
             //cmd.Parameters.AddWithValue("name", p.Name); <-- mais segurança
             int nRows = cmd.ExecuteNonQuery();
